@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'article',
+    'settings',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -56,7 +57,10 @@ ROOT_URLCONF = 'firstapp.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['/Users/zkv/projects/ornament/bin/firstapp/templates'],
+        'DIRS': [
+            '/Users/zkv/projects/ornament/bin/firstapp/templates',
+            '/Users/zkv/projects/ornament/bin/firstapp/article/templates',
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
