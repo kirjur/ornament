@@ -1,6 +1,6 @@
 {% extends 'main.html' %}
 {% block main_title %}{{settings.0.main_title}}{% endblock %}
-{% block shop_name %}{{settings.0.shop_name}}{% endblock %}
+{% block h1 %}{{settings.0.shop_name}}{% endblock %}
 {% block article %}
 {% for article in articles %}
 	<h6>Дата публикации:{{ article.article_date }}</h6>
