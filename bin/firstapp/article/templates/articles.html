@@ -1,0 +1,12 @@
+{% extends 'main.html' %}
+{% block main_title %}{{settings.0.main_title}}{% endblock %}
+{% block shop_name %}{{settings.0.shop_name}}{% endblock %}
+{% block article %}
+{% for article in articles %}
+	<h6>Дата публикации:{{ article.article_date }}</h6>
+	<h4><a href = "/articles/get/{{ article.id }}">{{ article.article_title }}</a></h4>
+	<p>{{ article.article_text }}</p>
+	<p>Понравилось:{{ article.article_likes }}</p>
+	<hr>
+{% endfor %}
+{% endblock %}

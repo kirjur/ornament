@@ -1,0 +1,14 @@
+{% extends 'main.html' %}
+{% block main_title %}{{settings.0.main_title}}{% endblock %}
+{% block shop_name %}{{settings.0.shop_name}}{% endblock %}
+{% block article %}
+<h4>{{ article.article_date }}</h4>
+<h2>{{ article.article_title }}</h2>
+<p>{{ article.article_text }}</p>
+<hr>
+<p>Комментарии:</p>
+{% for comment in comments %}
+	<p>{{ comment.comments_text }}</p>
+	<hr>
+{% endfor %}
+{% endblock %}

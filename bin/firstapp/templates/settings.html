@@ -1,0 +1,5 @@
+{% extends 'main.html' %}
+{% block article %}
+<h3>Shop_name are: {% block shop_name %}{{settings.0.shop_name}}{% endblock %}</h3>
+<h3>Main_title are: {% block main_title %}{{settings.0.main_title}}{% endblock %}</h3>
+{% endblock %}

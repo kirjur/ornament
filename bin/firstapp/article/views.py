@@ -4,6 +4,7 @@ from django.template.loader import get_template
 from django.template import Context
 from django.shortcuts import render_to_response
 from article.models import Article, Comments
+from settings.models import Settings
 
 # Create your views here.
 
@@ -27,8 +28,8 @@ def template_three_simple(request):
 
 
 def articles(request):
-    return render_to_response('articles.html', {'articles': Article.objects.all()})
+    return render_to_response('articles.html', {'articles': Article.objects.all(), 'settings': Settings.objects.all()})
 
 
 def article(request, article_id=1):
-    return render_to_response('article.html', {'article': Article.objects.get(pk=article_id), 'comments': Comments.objects.filter(comments_article_id=article_id)})
+    return render_to_response('article.html', {'article': Article.objects.get(pk=article_id), 'comments': Comments.objects.filter(comments_article_id=article_id), 'settings': Settings.objects.all()})
