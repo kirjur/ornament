@@ -6,6 +6,8 @@ from django.shortcuts import render_to_response, redirect
 from article.models import Article, Comments
 from settings.models import Settings
 from django.core.exceptions import ObjectDoesNotExist
+from forms import CommentForm
+from django.core.context_processors import csrf
 
 # Create your views here.
 
@@ -29,11 +31,21 @@ def template_three_simple(request):
 
 
 def articles(request):
-    return render_to_response('articles.html', {'articles': Article.objects.all(), 'settings': Settings.objects.all()})
+    args = {}
+    args['articles'] = Article.objects.all()
+    args['settings'] = Settings.objects.all()
+    return render_to_response('articles.html', args)
 
 
 def article(request, article_id=1):
-    return render_to_response('article.html', {'article': Article.objects.get(pk=article_id), 'comments': Comments.objects.filter(comments_article_id=article_id), 'settings': Settings.objects.all()})
+    comment_form = CommentForm
+    args = {}
+    args.update(csrf(request))
+    args['article'] = Article.objects.get(id=article_id)
+    args['comments'] = Comments.objects.filter(comments_article_id=article_id)
+    args['form'] = comment_form
+    args['settings'] = Settings.objects.all()
+    return render_to_response('article.html', args)
 
 
 def addlike(request, article_id):
@@ -44,3 +56,13 @@ def addlike(request, article_id):
     except ObjectDoesNotExist:
         raise Http404
     return redirect('/')
+
+
+def addcomment(request, article_id):
+    if request.POST:
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.comments_article = Article.objects.get(id=article_id)
+            form.save()
+        return redirect('/articles/get/%s/' % article_id)
