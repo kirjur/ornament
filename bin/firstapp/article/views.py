@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 from django.shortcuts import render
 from django.http.response import HttpResponse, Http404
 from django.template.loader import get_template
@@ -7,7 +9,7 @@ from article.models import Article, Comments
 from settings.models import Settings
 from django.core.exceptions import ObjectDoesNotExist
 from forms import CommentForm
-from django.core.context_processors import csrf
+from django.core.context_processors import csrf # Нужно поправить, будет изменено в версии 1.10
 from django.contrib import auth
 
 # Create your views here.

@@ -4,15 +4,16 @@
 <head>
 	<title>{% block main_title %}{% endblock %}</title>
 	<link rel="stylesheet" type="text/css" href="{% static "static/css/foundation.css" %}">
+	<script src="{% static "static/js/foundation.js" %}"></script>
 </head>
 <body>
 <div class="top-bar">
 	<section class="top-bar-section">
 		<ul class="right">
 			{% if username %}
-				<li><a href="/auth/logout/">Выйти ({{ username }})</a></li>
+				<li style="list-style:none"><a href="/auth/logout/">Выйти ({{ username }})</a></li>
 			{% else %}
-				<li><a href="/auth/login/">Войти</a></li>
+				<li style="list-style:none"><a href="/auth/login/">Войти</a></li>
 			{% endif %}
 		</ul>
 	</section>
