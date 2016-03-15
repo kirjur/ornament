@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'article',
     'settings',
+    'loginsys',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -60,6 +61,7 @@ TEMPLATES = [
         'DIRS': [
             '/Users/zkv/projects/ornament/bin/firstapp/templates',
             '/Users/zkv/projects/ornament/bin/firstapp/article/templates',
+            '/Users/zkv/projects/ornament/bin/firstapp/loginsys/templates',
         ],
         'APP_DIRS': True,
         'OPTIONS': {

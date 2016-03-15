@@ -8,6 +8,7 @@ from settings.models import Settings
 from django.core.exceptions import ObjectDoesNotExist
 from forms import CommentForm
 from django.core.context_processors import csrf
+from django.contrib import auth
 
 # Create your views here.
 
@@ -34,6 +35,7 @@ def articles(request):
     args = {}
     args['articles'] = Article.objects.all()
     args['settings'] = Settings.objects.all()
+    args['username'] = auth.get_user(request).username
     return render_to_response('articles.html', args)
 
 
@@ -44,6 +46,7 @@ def article(request, article_id=1):
     args['article'] = Article.objects.get(id=article_id)
     args['comments'] = Comments.objects.filter(comments_article_id=article_id)
     args['form'] = comment_form
+    args['username'] = auth.get_user(request).username
     args['settings'] = Settings.objects.all()
     return render_to_response('article.html', args)
 
