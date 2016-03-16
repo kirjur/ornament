@@ -9,7 +9,9 @@ from article.models import Article, Comments
 from settings.models import Settings
 from django.core.exceptions import ObjectDoesNotExist
 from forms import CommentForm
-from django.core.context_processors import csrf # Нужно поправить, будет изменено в версии 1.10
+# Нужно поправить, будет изменено в версии 1.10
+from django.core.context_processors import csrf
+from django.core.paginator import Paginator
 from django.contrib import auth
 
 # Create your views here.
@@ -33,9 +35,11 @@ def template_three_simple(request):
     return render_to_response('myview.html', {'name': view})
 
 
-def articles(request):
+def articles(request,page_number=1):
+    all_articles = Article.objects.all()
+    current_page = Paginator(all_articles, 5)
     args = {}
-    args['articles'] = Article.objects.all()
+    args['articles'] = current_page.page(page_number)
     args['settings'] = Settings.objects.all()
     args['username'] = auth.get_user(request).username
     return render_to_response('articles.html', args)
