@@ -2,6 +2,8 @@
 from __future__ import unicode_literals
 
 from django.db import models
+from django.utils import timezone
+from django.contrib.auth.models import User
 
 # Create your models here.
 
@@ -22,4 +24,5 @@ class Comments(models.Model):
 
     comments_text = models.TextField(verbose_name="Текст комментария")
     comments_article = models.ForeignKey(Article)
-    comments_date = models.DateTimeField()
+    comments_date = models.DateTimeField(default=timezone.now())
+    comments_from = models.ForeignKey(User)
