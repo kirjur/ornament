@@ -35,7 +35,7 @@ def template_three_simple(request):
     return render_to_response('myview.html', {'name': view})
 
 
-def articles(request,page_number=1):
+def articles(request, page_number=1):
     all_articles = Article.objects.all()
     current_page = Paginator(all_articles, 5)
     args = {}
@@ -45,7 +45,7 @@ def articles(request,page_number=1):
     return render_to_response('articles.html', args)
 
 
-def article(request, article_id=1,page_number=1):
+def article(request, article_id=1, page_number=1):
     comment_form = CommentForm
     all_comments = Comments.objects.all()
     current_comments_page = Paginator(all_comments, 5)
