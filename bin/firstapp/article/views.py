@@ -45,12 +45,14 @@ def articles(request,page_number=1):
     return render_to_response('articles.html', args)
 
 
-def article(request, article_id=1):
+def article(request, article_id=1,page_number=1):
     comment_form = CommentForm
+    all_comments = Comments.objects.all()
+    current_comments_page = Paginator(all_comments, 5)
     args = {}
     args.update(csrf(request))
     args['article'] = Article.objects.get(id=article_id)
-    args['comments'] = Comments.objects.filter(comments_article_id=article_id)
+    args['comments'] = current_comments_page.page(page_number)
     args['form'] = comment_form
     args['username'] = auth.get_user(request).username
     args['settings'] = Settings.objects.all()
