@@ -18,6 +18,8 @@ class Product(models.Model):
     date_delete = models.DateTimeField(blank=True)
     is_available = models.BooleanField(default=True)
     is_visible = models.BooleanField(default=True)
+    height = models.IntegerField(default=0)
+    width = models.IntegerField(default=0)
 
 
 class Image(models.Model):
