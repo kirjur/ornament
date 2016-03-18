@@ -1,10 +1,7 @@
 from django.conf.urls import url
-import article.views, product.views
+import article.views
 
 urlpatterns = [
-    url(r'^1/', article.views.basic_one),
-    url(r'^2/', article.views.template_two),
-    url(r'^3/', article.views.template_three_simple),
     url(r'^articles/all/$', article.views.articles),
     url(r'^articles/get/(?P<article_id>\d+)/(?P<page_number>\d+)/$', article.views.article),
     url(r'^articles/get/(?P<article_id>\d+)/$', article.views.article),

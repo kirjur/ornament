@@ -28,6 +28,7 @@ def logout(request):
     auth.logout(request)
     return redirect('/')
 
+
 def register(request):
     args = {}
     args.update(csrf(request))
@@ -36,7 +37,8 @@ def register(request):
         newuser_form = UserCreationForm(request.POST)
         if newuser_form.is_valid():
             newuser_form.save()
-            newuser = auth.authenticate(username=newuser_form.cleaned_data['username'],password=newuser_form.cleaned_data['password1'])
+            newuser = auth.authenticate(username=newuser_form.cleaned_data[
+                                        'username'], password=newuser_form.cleaned_data['password1'])
             auth.login(request, newuser)
             return redirect('/')
         else:
