@@ -24,5 +24,5 @@ class Comments(models.Model):
 
     comments_text = models.TextField(verbose_name="Текст комментария")
     comments_article = models.ForeignKey(Article)
-    comments_date = models.DateTimeField(default=timezone.now())
+    comments_date = models.DateTimeField(default=timezone.now)
     comments_from = models.ForeignKey(User)
