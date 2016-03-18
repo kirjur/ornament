@@ -7,9 +7,9 @@
 <p>{{ article.article_text }}</p>
 <hr>
 <div class="large-offset-1 large-8 columns">
-<p>Комментарии:</p>
+<h5><em>Комментарии:</em></h5>
 {% for comment in comments %}
-	<p>{{ comment.comments_from.username }} {{ comment.comments_date }}</p>
+	<p><b>{{ comment.comments_from.username }}</b> <small>{{ comment.comments_date }}</small></p>
 	<p>{{ comment.comments_text }}</p>
 	<hr>
 {% endfor %}

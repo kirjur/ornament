@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'article',
     'settings',
     'loginsys',
+    'product',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -62,6 +63,7 @@ TEMPLATES = [
             '/Users/zkv/projects/ornament/templates',
             '/Users/zkv/projects/ornament/article/templates',
             '/Users/zkv/projects/ornament/loginsys/templates',
+            '/Users/zkv/projects/ornament/product/templates',
         ],
         'APP_DIRS': True,
         'OPTIONS': {

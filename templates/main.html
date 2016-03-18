@@ -10,18 +10,28 @@
 	<script src="{% static "static/js/foundation.js" %}"></script>
 </head>
 <body>
+<div id="header-container">
+	<div id="header" class="header">
+		<h1 title="Орнаментум"><a href="/">Орнаментум</a></h1>
+	</div>
+</div>
 <div class="top-bar">
 	<section class="top-bar-section">
+		<ul class="menu">
+			<li class="topbar-title"><a href="/"><b>Блог</b></a></li>
+		</ul>
+		<ul class="left">
+			<li><a href="/products/all/"><b>Магазин</b></a></li>
+		</ul>
 		<ul class="right">
 			{% if username %}
-				<li style="list-style:none"><a href="/auth/logout/">Выйти ({{ username }})</a></li>
+				<li><a href="/auth/logout/">Выйти ({{ username }})</a></li>
 			{% else %}
-				<li style="list-style:none"><a href="/auth/login/">Войти</a></li>
+				<li><a href="/auth/login/">Войти</a></li>
 			{% endif %}
 		</ul>
 	</section>
 </div>
-<h1><a href="/">{% block h1 %}{% endblock %}</a></h1>
 <div class="row">
 {% block article %}{% endblock %}
 {% block login%}{% endblock %}

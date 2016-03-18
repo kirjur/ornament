@@ -1,5 +1,5 @@
 from django.conf.urls import url
-import article.views
+import article.views, product.views
 
 urlpatterns = [
     url(r'^1/', article.views.basic_one),
@@ -11,5 +11,6 @@ urlpatterns = [
     url(r'^articles/addlike/(?P<page_number>\d+)/(?P<article_id>\d+)/$', article.views.addlike),
     url(r'^articles/addcomment/(?P<article_id>\d+)/$', article.views.addcomment),
     url(r'^page/(\d+)/$', article.views.articles),
+    url(r'^products/all/$', product.views.products),
     url(r'^$', article.views.articles),
 ]
