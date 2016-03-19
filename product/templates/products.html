@@ -4,6 +4,7 @@
 {% block main_title %}Орнаментум - Продукция{% endblock %}
 {% block article %}
 <div class="row">
+<hr>
 	<div class="large-4 small-12 columns">
 	<img src="http://placehold.it/500x500&amp;text=Logo">
 		<div class="hide-for-small panel">
@@ -21,10 +22,11 @@
 		<div class="row">
 		{% for product in products %}
 			<div class="large-4 small-6 columns">
-			<img src="http://placehold.it/1000x1000&amp;text=Thumbnail">
+				<!-- Тут не пойму как сделать отображение картинок для каждого объекта -->
+			<img src="{% static "static/img/" %}{%if images.0.is_main %}{{ images.0.directory }}{% else %}no_img.png{% endif %}">
 				<div class="panel">
 				<h5><a href="/products/get/{{ product.id }}/">{{ product.title }}</a></h5>
-				<h6 class="subheader">{{ product.price }}</h6>
+				<h6 class="subheader">{{ product.price }} ₽</h6>
 				</div>
 			</div>
 		{% endfor %}
