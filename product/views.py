@@ -20,6 +20,7 @@ def product(request, product_id=1, page_number=1):
     args = {}
     args['product'] = Product.objects.get(id=product_id)
     args['product_type'] = Product_type.objects.get(id=args['product'].product_type_id)
+    # Тут на самом деле будет object.filter(), просто пока не знаю как в таком случае выводить картинки для товара
     args['images'] = Image.objects.get(product_id=product_id)
     args['username'] = auth.get_user(request).username
     return render_to_response('product.html', args)
