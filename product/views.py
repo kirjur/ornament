@@ -8,7 +8,7 @@ from django.contrib import auth
 
 def products(request, page_number=1):
     all_products = Product.objects.all()
-    current_page = Paginator(all_products, 9)
+    current_page = Paginator(all_products, 6)
     args = {}
     args['products'] = current_page.page(page_number)
     args['images'] = Image.objects.all()
