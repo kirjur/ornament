@@ -29,16 +29,15 @@ class Product(models.Model):
     height = models.IntegerField(default=0)
     width = models.IntegerField(default=0)
     product_type = models.ForeignKey(Product_type, default=1)
-    # main_image = models.ForeignKey(null=True)
+    main_image = models.ForeignKey('Image', null=True)
 
 
 class Image(models.Model):
     class Meta():
         db_table = 'images'
 
-    product = models.ForeignKey(Product)
-    directory = models.FilePathField(default='/product_images/')
-    is_main = models.BooleanField(default=False)
+    product = models.ForeignKey(Product, related_name=u"images")
+    file = models.ImageField(upload_to='product_images')
     # Добавить уникальность пары product_id + is_main
     # Не знаю как тут быть, хочу добавить к продукту main_image = models.ForeignKey(null=True), но тогда классы ссылаются друг на друга
     # А если оставляю в image is_main = models.BooleanField(default=False) тогда по идее получается хуже, плюс так я не знаю как вывести изображение
