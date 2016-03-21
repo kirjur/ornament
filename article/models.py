@@ -12,17 +12,17 @@ class Article(models.Model):
     class Meta():
         db_table = 'article'
 
-    article_title = models.CharField(max_length=200)
-    article_text = models.TextField()
-    article_date = models.DateTimeField()
-    article_likes = models.IntegerField(default=0)
+    title = models.CharField(max_length=200)
+    text = models.TextField()
+    date = models.DateTimeField()
+    likes = models.IntegerField(default=0)
 
 
 class Comments(models.Model):
     class Meta():
         db_table = 'comments'
 
-    comments_text = models.TextField(verbose_name="Текст комментария")
-    comments_article = models.ForeignKey(Article)
-    comments_date = models.DateTimeField(default=timezone.now)
-    comments_from = models.ForeignKey(User)
+    text = models.TextField(verbose_name="Текст комментария")
+    article = models.ForeignKey(Article)
+    date = models.DateTimeField(default=timezone.now)
+    user_from = models.ForeignKey(User)

@@ -6,10 +6,10 @@
 {% block article %}
 <div class="large-8 columns">
 {% for article in articles %}
-	<h6><small>Дата публикации:{{ article.article_date }}</small></h6>
-	<h4><a href = "/articles/get/{{ article.id }}">{{ article.article_title }}</a></h4>
-	<p>{{ article.article_text }}</p>
-	<p><a href="/articles/addlike/{{ articles.number }}/{{ article.id }}/"><img src="{% static "like.png" %}" width="20px" height="20px"></a>{{ article.article_likes }}</p>
+	<h6><small>Дата публикации:{{ article.date }}</small></h6>
+	<h4><a href = "/articles/get/{{ article.id }}">{{ article.title }}</a></h4>
+	<p>{{ article.text }}</p>
+	<p><a href="/articles/addlike/{{ articles.number }}/{{ article.id }}/"><img src="{% static "like.png" %}" width="20px" height="20px"></a>{{ article.likes }}</p>
 	<hr>
 {% endfor %}
 </div>

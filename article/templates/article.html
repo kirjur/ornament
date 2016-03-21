@@ -1,16 +1,16 @@
 {% extends 'main.html' %}
 
-{% block main_title %}Орнаментум - {{ article.article_title}}{% endblock %}
-{% block h1 %}{{settings.0.shop_name}}{% endblock %}
+{% block main_title %}Орнаментум - {{ article.title}}{% endblock %}
+{% block h1 %}Орнаментум{% endblock %}
 {% block article %}
-<h4>{{ article.article_date }}</h4>
-<h2>{{ article.article_title }}</h2>
-<p>{{ article.article_text }}</p>
+<h4>{{ article.date }}</h4>
+<h2>{{ article.title }}</h2>
+<p>{{ article.text }}</p>
 <div class="large-offset-1 large-8 columns">
 <h5><em>Комментарии:</em></h5>
 {% for comment in comments %}
-	<p><b>{{ comment.comments_from.username }}</b> <small>{{ comment.comments_date }}</small></p>
-	<p>{{ comment.comments_text }}</p>
+	<p><b>{{ comment.user_from.username }}</b> <small>{{ comment.date }}</small></p>
+	<p>{{ comment.text }}</p>
 	<hr>
 {% endfor %}
 </div>

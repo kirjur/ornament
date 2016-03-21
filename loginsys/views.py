@@ -7,7 +7,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.core.urlresolvers import reverse
 
 
-def login(request):
+def login(request, *args, **kwargs):
     args = {}
     args.update(csrf(request))
     if request.POST:
@@ -25,12 +25,12 @@ def login(request):
         return render_to_response('login.html', args)
 
 
-def logout(request):
+def logout(request, *args, **kwargs):
     auth.logout(request)
     return redirect(reverse('index'))
 
 
-def register(request):
+def register(request, *args, **kwargs):
     args = {}
     args.update(csrf(request))
     args['form'] = UserCreationForm()
