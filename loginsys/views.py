@@ -4,6 +4,7 @@ from django.shortcuts import render_to_response, redirect
 from django.contrib import auth
 from django.core.context_processors import csrf
 from django.contrib.auth.forms import UserCreationForm
+from django.core.urlresolvers import reverse
 
 
 def login(request):
@@ -15,7 +16,7 @@ def login(request):
         user = auth.authenticate(username=username, password=password)
         if user is not None:
             auth.login(request, user)
-            return redirect('/')
+            return redirect(reverse("index"))
         else:
             args['login_error'] = "Пользователь не найден"
             return render_to_response('login.html', args)
@@ -26,7 +27,7 @@ def login(request):
 
 def logout(request):
     auth.logout(request)
-    return redirect('/')
+    return redirect(reverse('index'))
 
 
 def register(request):
@@ -40,7 +41,7 @@ def register(request):
             newuser = auth.authenticate(username=newuser_form.cleaned_data[
                                         'username'], password=newuser_form.cleaned_data['password1'])
             auth.login(request, newuser)
-            return redirect('/')
+            return redirect(reverse('index'))
         else:
             args['form'] = newuser_form
     return render_to_response('register.html', args)
