@@ -3,6 +3,8 @@ from django.shortcuts import render_to_response
 from product.models import Product, Image, Product_type
 from django.core.paginator import Paginator
 from django.contrib import auth
+from django.template import RequestContext
+
 # Create your views here.
 
 
@@ -16,11 +18,8 @@ def products(request, page_number=1):
     return render_to_response('products.html', args)
 
 
-def product(request, product_id=1, page_number=1):
-    args = {}
-    args['product'] = Product.objects.get(id=product_id)
-    args['product_type'] = Product_type.objects.get(id=args['product'].product_type_id)
-    # Тут на самом деле будет object.filter(), просто пока не знаю как в таком случае выводить картинки для товара
-    args['images'] = Image.objects.get(product_id=product_id)
-    args['username'] = auth.get_user(request).username
-    return render_to_response('product.html', args)
+def product(request, product_id=1, page_number=1, *args, **kwargs):
+    context = RequestContext(request, {
+        'product': Product.objects.get(id=product_id)
+    })
+    return render_to_response('product.html', RequestContext)

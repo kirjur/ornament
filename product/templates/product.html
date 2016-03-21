@@ -1,7 +1,7 @@
 {% extends 'main.html' %}
 {% load staticfiles %}
 
-{% block main_title %}Орнаментум - {{ product_type.name }} {{ product.title }}{% endblock %}
+{% block main_title %}Орнаментум - {{ product.product_type.name }} {{ product.title }}{% endblock %}
 {% block article %}
  <div class="row">
 <div class="large-2 columns">
@@ -14,7 +14,7 @@
 <img src="http://placehold.it/400x300&text=[img]">
 </div>
 <div class="large-5 columns">
-<img src="{% static "static/img/" %}{{ images.directory }}">
+<img src="{{ product.main_image.file.url }}">
 </div>
 <div class="large-5 columns">
 <h4><b>{{ product.title }}</b></h4>
