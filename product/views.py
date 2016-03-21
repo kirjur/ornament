@@ -2,14 +2,23 @@
 from django.shortcuts import render_to_response
 from product.models import Product
 from django.template import RequestContext
-
-# Create your views here.
+from django.core.paginator import Paginator
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 
 def products(request, page_number=1, *args, **kwargs):
+    all_products = Product.objects.all()
+    current_page = Paginator(all_products, 6)
     context = RequestContext(request, {
-        'all_products': Product.objects.all()
+        'all_products': current_page.page(request.GET.get('page', page_number)),
     })
+    # page_number = request.GET.get('page')
+    # try:
+    #     all_products = current_page.page(page_number)
+    # except PageNotAnInteger:
+    #     all_products = current_page.page(1)
+    # except EmptyPage:
+    #     all_products = current_page.page(current_page.num_pages)
     return render_to_response('products.html', context)
 
 

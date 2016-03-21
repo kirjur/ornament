@@ -23,9 +23,12 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '+ixhq)hh^4c8iom2cv)x-!^b1*o(&i=t2cdlosvxxmv_1c(low'
 
 # SECURITY WARNING: don't run with debug turned on in production!
+# DEBUG = False
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'ornamentum.su','127.0.0.1'
+]
 
 
 # Application definition
@@ -40,6 +43,7 @@ INSTALLED_APPS = [
     'article',
     'loginsys',
     'product',
+    'debug_toolbar',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -131,7 +135,7 @@ STATIC_URL = '/static/'
 
 STATICFILES_DIRS = (
     ('static', '/Users/zkv/projects/ornament/static'),
-    )
-    
+)
+
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')

@@ -29,7 +29,7 @@ class Product(models.Model):
     height = models.IntegerField(default=0)
     width = models.IntegerField(default=0)
     product_type = models.ForeignKey(ProductType, default=1)
-    main_image = models.ForeignKey('Image', null=True)
+    main_image = models.ForeignKey('Image', null=True, related_name="products")
 
 
 class Image(models.Model):
@@ -37,4 +37,4 @@ class Image(models.Model):
         db_table = 'images'
 
     product = models.ForeignKey(Product, related_name=u"images")
-    file = models.ImageField(upload_to='product_images')
+    file = models.ImageField(upload_to='product_images',default='static/img/no_img.png')

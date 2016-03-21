@@ -22,7 +22,7 @@ def articles(request, page_number=1, *args, **kwargs):
 
 def article(request, article_id=1, page_number=1, *args, **kwargs):
     comment_form = CommentForm
-    all_comments = Comments.objects.all()
+    all_comments = Comments.objects.filter(article_id=article_id)
     current_comments_page = Paginator(all_comments, 5)
     args = {}
     args.update(csrf(request))
@@ -42,7 +42,7 @@ def addlike(request, page_number, article_id, *args, **kwargs):
             redirect('/page/%s/' % page.number)
         else:
             article = Article.objects.get(id=article_id)
-            article.article_likes += 1
+            article.likes += 1
             article.save()
             response = redirect('/page/%s/' % page.number)
             response.set_cookie(article_id, 'test')
@@ -57,7 +57,8 @@ def addcomment(request, article_id, *args, **kwargs):
         form = CommentForm(request.POST)
         if form.is_valid():
             comment = form.save(commit=False)
-            comment.comments_article = Article.objects.get(id=article_id)
+            comment.article = Article.objects.get(id=article_id)
+            comment.user_from_id = auth.get_user(request).id
             form.save()
             request.session.set_expiry(60)
             request.session['pause'] = True
