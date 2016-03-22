@@ -11,16 +11,21 @@ class ProductType(models.Model):
     class Meta():
         db_table = 'product_types'
 
+    def __str__(self):
+        return self.name
+
     name = models.CharField(max_length=200)
 
 
 class Product(models.Model):
     class Meta():
         db_table = 'products'
+        verbose_name = "Изделие"
 
     title = models.CharField(max_length=200, verbose_name="Название")
     description = models.TextField(verbose_name="Описание")
-    create_date = models.DateTimeField(default=timezone.now, verbose_name="Дата создания")
+    create_date = models.DateTimeField(
+        default=timezone.now, verbose_name="Дата создания")
     likes = models.IntegerField(default=0, verbose_name="Количество лайков")
     price = models.IntegerField(default=0, verbose_name="Цена")
     date_delete = models.DateTimeField(null=True, verbose_name="Дата удаления")
@@ -28,8 +33,10 @@ class Product(models.Model):
     is_visible = models.BooleanField(default=True, verbose_name="Видимость")
     height = models.IntegerField(default=0, verbose_name="Высота")
     width = models.IntegerField(default=0, verbose_name="Ширина")
-    product_type = models.ForeignKey(ProductType, default=1, verbose_name="Тип товара")
-    main_image = models.ForeignKey('Image', null=True, related_name="products", verbose_name="Главное изображение")
+    product_type = models.ForeignKey(
+        ProductType, default=1, verbose_name="Тип товара")
+    main_image = models.ForeignKey(
+        'Image', null=True, related_name="products", verbose_name="Главное изображение")
 
 
 class Image(models.Model):
