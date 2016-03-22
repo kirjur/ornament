@@ -20,13 +20,15 @@
 	<div class="large-8 columns">
 		<div class="row">
 		{% for product in all_products %}
-			<div class="large-4 small-6 columns">
-			<img src="{%if product.main_image.file.url %}{{ product.main_image.file.url }}{% else %}/static/img/no_img.png{% endif %}">
-				<div class="panel">
-				<h5><a href="/products/get/{{ product.id }}/">{{ product.title }}</a></h5>
-				<h6 class="subheader">{{ product.price }} ₽</h6>
+			{% if product.is_visible %}
+				<div class="large-4 small-6 columns">
+				<img src="{%if product.main_image.file.url %}{{ product.main_image.file.url }}{% else %}/static/img/no_img.png{% endif %}">
+					<div class="panel">
+					<h5><a href="/products/get/{{ product.id }}/">{{ product.title }}</a></h5>
+					<h6 class="subheader">{{ product.price }} ₽</h6>
+					</div>
 				</div>
-			</div>
+			{% endif %}
 		{% endfor %}
 		</div> 
 	</div>
