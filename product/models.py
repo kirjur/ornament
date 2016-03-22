@@ -37,4 +37,5 @@ class Image(models.Model):
         db_table = 'images'
 
     product = models.ForeignKey(Product, related_name=u"images")
-    file = models.ImageField(upload_to='product_images',default='static/img/no_img.png')
+    file = models.ImageField(
+        upload_to='product_images', default='static/img/no_img.png')
