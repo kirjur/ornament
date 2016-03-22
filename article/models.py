@@ -12,10 +12,10 @@ class Article(models.Model):
     class Meta():
         db_table = 'article'
 
-    title = models.CharField(max_length=200)
-    text = models.TextField()
-    date = models.DateTimeField()
-    likes = models.IntegerField(default=0)
+    title = models.CharField(max_length=200, verbose_name="Заголовок статьи")
+    text = models.TextField(verbose_name="Текст статьи")
+    date = models.DateTimeField(verbose_name="Дата статьи")
+    likes = models.IntegerField(default=0, verbose_name="Количество лайков")
 
 
 class Comments(models.Model):
@@ -23,6 +23,6 @@ class Comments(models.Model):
         db_table = 'comments'
 
     text = models.TextField(verbose_name="Текст комментария")
-    article = models.ForeignKey(Article)
-    date = models.DateTimeField(default=timezone.now)
-    user_from = models.ForeignKey(User)
+    article = models.ForeignKey(Article, verbose_name="Статья")
+    date = models.DateTimeField(default=timezone.now, verbose_name="Дата комментария")
+    user_from = models.ForeignKey(User, verbose_name="Пользователь")

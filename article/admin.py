@@ -13,5 +13,5 @@ class ArticleAdmin(admin.ModelAdmin):
     fields = ['title', 'text', 'date']
     inlines = [ArticleInline]
     list_filter = ['date']
-
+    list_display = ('title', 'date')
 admin.site.register(Article, ArticleAdmin)
