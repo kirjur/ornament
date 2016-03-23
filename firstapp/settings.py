@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'article',
     'loginsys',
     'product',
+    'about',
     'debug_toolbar',
 ]
 
@@ -64,9 +65,6 @@ TEMPLATES = [
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
             '/Users/zkv/projects/ornament/templates',
-            '/Users/zkv/projects/ornament/article/templates',
-            '/Users/zkv/projects/ornament/loginsys/templates',
-            '/Users/zkv/projects/ornament/product/templates',
         ],
         'APP_DIRS': True,
         'OPTIONS': {

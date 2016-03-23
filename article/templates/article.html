@@ -1,49 +1,48 @@
 {% extends 'main.html' %}
-
 {% block main_title %}Орнаментум - {{ article.title}}{% endblock %}
 {% block h1 %}Орнаментум{% endblock %}
 {% block article %}
-<h4>{{ article.date }}</h4>
-<h2>{{ article.title }}</h2>
-<p>{{ article.text }}</p>
-<div class="large-offset-1 large-8 columns">
-<h5><em>Комментарии:</em></h5>
-{% for comment in comments %}
-	<p><b>{{ comment.user_from.username }}</b> <small>{{ comment.date }}</small></p>
-	<p>{{ comment.text }}</p>
-	<hr>
-{% endfor %}
-</div>
-<div>
-	<div class="row">
-		<div class="large-3 large-offset-5 columns">
-			<ul class="pagination">
-				{% if comments.has_previous %}
-					<li class="arrow"><a href="/articles/get/{{ article.id }}/{{ comments.previous_page_number }}/">&laquo;</a></li>
-				{% else %}
-					<li class="arrow unavailable"><a href="">&laquo;</a></li>
-				{% endif %}
-				{% for page in comments.paginator.page_range %}
-					{% if page == comments.number %}
-						<li class="current"><a href="/articles/get/{{ article.id }}/{{ page }}/">{{ page }}</a></li>
+	<h4>{{ article.date }}</h4>
+	<h2>{{ article.title }}</h2>
+	<p>{{ article.text }}</p>
+	<div class="large-offset-1 large-8 columns">
+		<h5><em>Комментарии:</em></h5>
+		{% for comment in comments %}
+			<p><b>{{ comment.user_from.username }}</b> <small>{{ comment.date }}</small></p>
+			<p>{{ comment.text }}</p>
+			<hr>
+		{% endfor %}
+	</div>
+	<div>
+		<div class="row">
+			<div class="large-3 large-offset-5 columns">
+				<ul class="pagination">
+					{% if comments.has_previous %}
+						<li class="arrow"><a href="/articles/get/{{ article.id }}/{{ comments.previous_page_number }}/">&laquo;</a></li>
 					{% else %}
-						<li><a href="/articles/get/{{ article.id }}/{{ page }}/">{{ page }}</a></li>
+						<li class="arrow unavailable"><a href="">&laquo;</a></li>
 					{% endif %}
-				{% endfor %}
-				{% if comments.has_next %}
-					<li class="arrow"><a href="/articles/get/{{ article.id }}/{{ comments.next_page_number }}/">&raquo;</a></li>
-				{% else %}
-					<li class="arrow unavailable"><a href="">&raquo;</a></li>
-				{% endif %}
-			</ul>
+					{% for page in comments.paginator.page_range %}
+						{% if page == comments.number %}
+							<li class="current"><a href="/articles/get/{{ article.id }}/{{ page }}/">{{ page }}</a></li>
+						{% else %}
+							<li><a href="/articles/get/{{ article.id }}/{{ page }}/">{{ page }}</a></li>
+						{% endif %}
+					{% endfor %}
+					{% if comments.has_next %}
+						<li class="arrow"><a href="/articles/get/{{ article.id }}/{{ comments.next_page_number }}/">&raquo;</a></li>
+					{% else %}
+						<li class="arrow unavailable"><a href="">&raquo;</a></li>
+					{% endif %}
+				</ul>
+			</div>
 		</div>
 	</div>
-</div>
-{% if username %}
-	<form action="/articles/addcomment/{{ article.id }}/" method="post">
-		{% csrf_token %}
-		{{ form }}
-		<input type ="submit" class="button" value="Добавить комментарий"></input>
-	</form>
-{% endif %}
+	{% if username %}
+		<form action="/articles/addcomment/{{ article.id }}/" method="post">
+			{% csrf_token %}
+			{{ form }}
+			<input type ="submit" class="button" value="Добавить комментарий"></input>
+		</form>
+	{% endif %}
 {% endblock %}

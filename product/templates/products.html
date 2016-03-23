@@ -1,66 +1,64 @@
 {% extends 'main.html' %}
 {% load staticfiles %}
-
 {% block main_title %}Орнаментум - Продукция{% endblock %}
 {% block article %}
-<div class="row">
-	<div class="large-4 small-12 columns">
-	<img src="http://placehold.it/500x500&amp;text=Logo">
-		<div class="hide-for-small panel">
-			<h3>Header</h3>
-			<h5 class="subheader">Risus ligula, aliquam nec fermentum vitae, sollicitudin eget urna. Donec dignissim
-			nibh fermentum odio ornare sagittis.</h5>
-		</div><a href="#">
-
-		<div class="panel callout radius">
-			<h6>99&nbsp; items in your cart</h6>
-		</div></a>
-	</div> 
-	 
-	<div class="large-8 columns">
-		<div class="row">
-		{% for product in all_products %}
-			{% if product.is_visible %}
-				<div class="large-4 small-6 columns">
-				<img src="{%if product.main_image.file.url %}{{ product.main_image.file.url }}{% else %}/static/img/no_img.png{% endif %}">
-					<div class="panel">
-					<h5><a href="/products/get/{{ product.id }}/">{{ product.title }}</a></h5>
-					<h6 class="subheader">{{ product.price }} ₽</h6>
-					</div>
-				</div>
-			{% endif %}
-		{% endfor %}
-		</div> 
-	</div>
-</div>
-<div>
 	<div class="row">
-		<div class="large-3 large-offset-5 columns">
-			<ul class="pagination">
-				{% if all_products.has_previous %}
-					<li class="arrow"><a href="/products/all/{{ all_products.previous_page_number }}">&laquo;</a></li>
-				{% else %}
-					<li class="arrow unavailable"><a href="">&laquo;</a></li>
-				{% endif %}
-				{% for page in all_products.paginator.page_range %}
-					{% if page == all_products.number %}
-						<li class="current"><a href="/products/all/{{ page }}/">{{ page }}</a></li>
-					{% else %}
-						<li><a href="/products/all/{{ page }}/">{{ page }}</a></li>
+		<div class="large-4 small-12 columns">
+			<img src="http://placehold.it/500x500&amp;text=Logo">
+			<div class="hide-for-small panel">
+				<h3>Header</h3>
+				<h5 class="subheader">Risus ligula, aliquam nec fermentum vitae, sollicitudin eget urna. Donec dignissim
+				nibh fermentum odio ornare sagittis.</h5>
+			</div><a href="#">
+			<div class="panel callout radius">
+				<h6>99&nbsp; items in your cart</h6>
+			</div></a>
+		</div>
+		
+		<div class="large-8 columns">
+			<div class="row">
+				{% for product in all_products %}
+					{% if product.is_visible %}
+						<div class="large-4 small-6 columns">
+							<a href="/products/get/{{ product.id }}/"><img src="{%if product.main_image.file.url %}{{ product.main_image.file.url }}{% else %}/static/img/no_img.png{% endif %}"></a>
+							<div class="panel">
+								<h5><a href="/products/get/{{ product.id }}/">{{ product.title }}</a></h5>
+								<h6 class="subheader">{{ product.price }} ₽</h6>
+							</div>
+						</div>
 					{% endif %}
 				{% endfor %}
-				{% if all_products.has_next %}
-					<li class="arrow"><a href="/products/all/{{ all_products.next_page_number }}">&raquo;</a></li>
-				{% else %}
-					<li class="arrow unavailable"><a href="">&raquo;</a></li>
-				{% endif %}
-			</ul>
+			</div>
 		</div>
 	</div>
-</div>
-<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/5.5.3/js/foundation.min.js"></script>
-<script>
-      $(document).foundation();
-    </script>
+	<div>
+		<div class="row">
+			<div class="large-3 large-offset-5 columns">
+				<ul class="pagination">
+					{% if all_products.has_previous %}
+						<li class="arrow"><a href="/products/all/{{ all_products.previous_page_number }}">&laquo;</a></li>
+					{% else %}
+						<li class="arrow unavailable"><a href="">&laquo;</a></li>
+					{% endif %}
+					{% for page in all_products.paginator.page_range %}
+						{% if page == all_products.number %}
+							<li class="current"><a href="/products/all/{{ page }}/">{{ page }}</a></li>
+						{% else %}
+							<li><a href="/products/all/{{ page }}/">{{ page }}</a></li>
+						{% endif %}
+					{% endfor %}
+					{% if all_products.has_next %}
+						<li class="arrow"><a href="/products/all/{{ all_products.next_page_number }}">&raquo;</a></li>
+					{% else %}
+						<li class="arrow unavailable"><a href="">&raquo;</a></li>
+					{% endif %}
+				</ul>
+			</div>
+		</div>
+	</div>
+	<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/5.5.3/js/foundation.min.js"></script>
+	<script>
+	$(document).foundation();
+	</script>
 {% endblock article %}
