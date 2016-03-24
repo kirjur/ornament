@@ -12,7 +12,7 @@ def products(request, page_number=1, *args, **kwargs):
     all_products = Product.objects.all()
     current_page = Paginator(all_products, 6)
     context = RequestContext(request, {
-        'username': auth.get_user(request).username,
+        'user': auth.get_user(request),
         'all_products': current_page.page(request.GET.get('page', page_number)),
     })
     # page_number = request.GET.get('page')
@@ -27,7 +27,7 @@ def products(request, page_number=1, *args, **kwargs):
 
 def product(request, product_id=1, page_number=1, *args, **kwargs):
     context = RequestContext(request, {
-        'username': auth.get_user(request).username,
+        'user': auth.get_user(request),
         'product': Product.objects.get(id=product_id),
     })
     return render_to_response('product.html', context)

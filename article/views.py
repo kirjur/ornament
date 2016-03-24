@@ -16,7 +16,7 @@ def articles(request, page_number=1, *args, **kwargs):
     current_page = Paginator(all_articles, 5)
     args = {}
     args['articles'] = current_page.page(page_number)
-    args['username'] = auth.get_user(request).username
+    args['user'] = auth.get_user(request)
     return render_to_response('articles.html', args)
 
 
@@ -29,7 +29,7 @@ def article(request, article_id=1, page_number=1, *args, **kwargs):
     args['article'] = Article.objects.get(id=article_id)
     args['comments'] = current_comments_page.page(page_number)
     args['form'] = comment_form
-    args['username'] = auth.get_user(request).username
+    args['user'] = auth.get_user(request)
     return render_to_response('article.html', args)
 
 

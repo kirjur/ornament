@@ -43,6 +43,10 @@ class Image(models.Model):
     class Meta():
         db_table = 'images'
 
+    def __str__(self):
+        return self.filename
+
     product = models.ForeignKey(Product, related_name=u"images")
     file = models.ImageField(
         upload_to='product_images', default='static/img/no_img.png')
+    filename = models.CharField(default='image',max_length=200)
