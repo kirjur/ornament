@@ -27,7 +27,7 @@ SECRET_KEY = '+ixhq)hh^4c8iom2cv)x-!^b1*o(&i=t2cdlosvxxmv_1c(low'
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    'ornamentum.su','127.0.0.1'
+    'ornamentum.su', '127.0.0.1'
 ]
 
 

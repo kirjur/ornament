@@ -1,18 +1,24 @@
 {% extends 'main.html' %}
-
+{% load staticfiles %}
 {% block login %}
-	<div class="large-offset-3 large-6 columns">
-		<form action="/auth/login/" method="post">
-			{% csrf_token %}
-			<label for="username">Имя пользователя</label>
-			<input type="text" name="username" id="username"></input>
-			<label for="password">Пароль</label>
-			<input type="password" name="password" id="password"></input>
-			{% if login_error %}
-				<label class="error">{{ login_error }}</label>
-			{% endif %}
-			<input class="button" type="submit" value="Войти"></input>
-			<div class="label round secondary"><a href="/auth/register/">Регистрация</a></div>
-		</form>
-	</div>
+<div class="medium-6 medium-centered large-4 large-centered columns">
+  <form action="/auth/login/" method="post">
+    {% csrf_token %}
+    <div class="row column log-in-form">
+      <img src={% static "logo.png" %} width="200px" height="200px">
+      <label for="username">Логин
+        <input name="username" id="username">
+      </label>
+      <label for="password">Пароль
+        <input type="password" name="password" id="password">
+      </label>
+      {% if login_error %}
+        <label class="error">{{ login_error }}</label>
+      {% endif %}
+      <input class="button" type="submit" value="Войти"></input>
+      <div class="label round secondary"><a href="/auth/register/">Регистрация</a></div>
+      <p class="text-center"><a href="#">Забыли пароль?</a></p>
+    </div>
+  </form>
+</div>
 {% endblock %}
