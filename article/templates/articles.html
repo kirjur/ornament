@@ -8,7 +8,7 @@
 			<h6><small>Дата публикации:{{ article.date }}</small></h6>
 			<h4><a href = "/articles/get/{{ article.id }}">{{ article.title }}</a></h4>
 			<p>{{ article.text }}</p>
-			<p><a href="/articles/addlike/{{ articles.number }}/{{ article.id }}/"><img src="{% static "like.png" %}" width="20px" height="20px"></a>{{ article.likes }}</p>
+			<p><a href="/articles/addlike/{{ articles.number }}/{{ article.id }}/"><img src="{% static "like.png" %}" width="15px" height="15px"></a>{{ article.likes }}</p>
 			<hr>
 		{% endfor %}
 	</div>
