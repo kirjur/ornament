@@ -3,10 +3,12 @@
 <html>
 	<head>
 		<title>{% block main_title %}{% endblock %}</title>
+		<script src="https://code.jquery.com/jquery-2.2.2.min.js"   integrity="sha256-36cp2Co+/62rEAAYHLmRCPIych47CvdM+uTBJwSzWjI="   crossorigin="anonymous"></script>
 		<link href="{% static "static/css/foundation.min.css" %}" rel="stylesheet">
 		<link href="{% static "static/css/ornament.css" %}" rel="stylesheet">
 		<link href="{% static "static/css/foundation-icons.css" %}" rel="stylesheet" type='text/css'>
 		<script src="{% static "static/js/foundation.js" %}"></script>
+		<script src="{% static "static/js/ornamentum.js" %}"></script>
 	</head>
 	<body>
 		<div id="header-container">
@@ -30,6 +32,16 @@
 				</ul>
 				<ul class="left">
 					<li class="topbar-title"><a href="/order/"><b>На заказ</b></a></li>
+				</ul>
+				<ul class="menu" data-responsive-menu="drilldown medium-dropdown">
+					<li class="has-submenu">
+						<a href="#" name="menu-button">One</a>
+						<ul class="submenu menu vertical" data-submenu>
+							<li><a href="#">One</a></li>
+							<li><a href="#">Two</a></li>
+							<li><a href="#">Three</a></li>
+						</ul>
+					</li>
 				</ul>
 				<ul class="right">
 					{% if user.username %}
